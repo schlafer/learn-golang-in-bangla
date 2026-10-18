@@ -1,6 +1,6 @@
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
-  title: Learn Golang in Bangla
+  title: বাংলায় গোল্যাং শিখুন
   structure:
     - type: space
       key: space-learn-golang-in-bangla
