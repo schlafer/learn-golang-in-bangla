@@ -8,7 +8,7 @@
 
 Go (যা সাধারণত Golang নামে পরিচিত) ২০০৭ সালে গুগলে রবার্ট গ্রিজমার (Robert Griesemer), রব পাইক (Rob Pike) এবং কেন থম্পসন (Ken Thompson) দ্বারা তৈরি করা হয় এবং ২০০৯ সালে এটি ওপেন-সোর্স হিসেবে উন্মুক্ত করা হয়। আধুনিক ক্লাউড কম্পিউটিং, মাইক্রোসার্ভিস, ডিস্ট্রিবিউটেড সিস্টেম এবং হাই-পারফর্ম্যান্স ব্যাকএন্ড সার্ভার তৈরিতে গো বিশ্বজুড়ে অত্যন্ত জনপ্রিয়।
 
-এই বইটি মূলত [`howtocode-dev/golang.howtocode.dev`](https://github.com/howtocode-dev/golang.howtocode.dev) ওপেন-সোর্স উদ্যোগের একটি আধুনিক ও সক্রিয় সংস্করণ (fork)। মূল প্রজেক্টটি দীর্ঘদিন ধরে রক্ষণাবেক্ষণ না হওয়ায়, গো-এর সাম্প্রতিক সংস্করণ **Go 1.27.1**-এর সাথে সামঞ্জস্য রেখে পুরো বইটি নতুন করে সাজানো ও সম্প্রসারিত করা হয়েছে।
+এই বইটি মূলত [`howtocode-dev/golang.howtocode.dev`](https://github.com/howtocode-dev/golang.howtocode.dev) কমিউনিটি উদ্যোগের একটি আধুনিক ও সক্রিয় সংস্করণ (fork)। মূল প্রজেক্টটি দীর্ঘদিন ধরে রক্ষণাবেক্ষণ না হওয়ায়, গো-এর সাম্প্রতিক সংস্করণ **Go 1.27.1**-এর সাথে সামঞ্জস্য রেখে পুরো বইটি নতুন করে সাজানো ও সম্প্রসারিত করা হয়েছে।
 
 ## এই সংস্করণের বিশেষত্ব
 
@@ -71,7 +71,7 @@ Go (যা সাধারণত Golang নামে পরিচিত) ২০�
 
 ## অবদান রাখুন (Contributing)
 
-বইটি সম্পূর্ণ ওপেন-সোর্স। আপনার কোনো পরামর্শ, ভুল সংশোধন বা নতুন উদাহরণ যোগ করার ইচ্ছা থাকলে সানন্দে স্বাগতম:
+বইটি সর্বসাধারণের জন্য একটি উন্মুক্ত শিক্ষামূলক উদ্যোগ (Community Educational Resource)। আপনার কোনো পরামর্শ, ভুল সংশোধন বা নতুন উদাহরণ যোগ করার ইচ্ছা থাকলে সানন্দে স্বাগতম:
 
 1. এই রিপোজিটরিটি ফর্ক (Fork) করুন: [`schlafer/learn-golang-in-bangla`](https://github.com/schlafer/learn-golang-in-bangla)
 2. নতুন ব্রাঞ্চ তৈরি করুন (`git checkout -b fix/chapter-typo`)
@@ -82,11 +82,17 @@ Go (যা সাধারণত Golang নামে পরিচিত) ২০�
 
 ## কৃতজ্ঞতা ও ক্রেডিট (Acknowledgements)
 
-- **মূল উদ্যোগ ও কন্ট্রিবিউটর:** এই বইটির প্রাথমিক ভিত্তি ছিল [howtocode-dev/golang.howtocode.dev](https://github.com/howtocode-dev/golang.howtocode.dev)। মূল প্রজেক্টে যারা অবদান রেখেছিলেন তাদের প্রতি কৃতজ্ঞতা। মূল কন্ট্রিবিউটরদের তালিকা দেখতে পারেন [এখানে](https://github.com/howtocode-dev/golang.howtocode.dev/graphs/contributors)।
-- **বর্তমান সংস্করণ ও রক্ষণাবেক্ষণ:** [schlafer/learn-golang-in-bangla](https://github.com/schlafer/learn-golang-in-bangla)।
+- **মূল উদ্যোগ ও কন্ট্রিবিউটর:** এই বইটির প্রাথমিক ভিত্তি ছিল [`howtocode-dev/golang.howtocode.dev`](https://github.com/howtocode-dev/golang.howtocode.dev)। মূল প্রজেক্টে যারা অবদান রেখেছিলেন তাদের প্রতি আন্তরিক কৃতজ্ঞতা। মূল কন্ট্রিবিউটরদের তালিকা দেখতে পারেন [এখানে](https://github.com/howtocode-dev/golang.howtocode.dev/graphs/contributors)।
+- **বর্তমান সংস্করণ ও রক্ষণাবেক্ষণ:** [`schlafer/learn-golang-in-bangla`](https://github.com/schlafer/learn-golang-in-bangla)।
 
 ---
 
-## লাইসেন্স (License)
+## লাইসেন্স ও কপিরাইট শর্তাবলী (Licensing & Attribution)
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
+বইটির কোড এবং লেখার কপিরাইট পরিষ্কার রাখতে ডুয়াল-লাইসেন্সিং এবং শর্তাবলী নির্ধারণ করা হয়েছে:
+
+1. **কোড স্নিপেট ও উদাহরণ (MIT License):** বইয়ের সমস্ত Go কোড উদাহরণ এবং টেস্ট সুইট [MIT License](LICENSE.md#1-code-snippets-and-examples-mit-license)-এর আওতাভুক্ত। যে কেউ যেকোনো প্রজেক্টে (ব্যক্তিগত, অ্যাকাডেমিক কিংবা বাণিজ্যিক) এই কোড ব্যবহার করতে পারবেন।
+2. **মূল ফাউন্ডেশন চ্যাপ্টার ১–১৪ (CC BY-NC-ND 4.0):** মূল `howtocode-dev` প্রজেক্টের লেখা ক্রিয়েটিভ কমন্স [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) লাইসেন্সের আওতাভুক্ত এবং অ-বাণিজ্যিক শিক্ষামূলক ব্যবহারের জন্য সংরক্ষিত।
+3. **নতুন অধ্যায় ও আধুনিক সংস্করণ (CC BY-NC-SA 4.0):** এই ফর্কে যুক্ত হওয়া ১৮টি নতুন অধ্যায় (চ্যাপ্টার ১৫–৩১) এবং গো ১.২৭+ সংস্করণ [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) লাইসেন্সের আওতাভুক্ত।
+
+বিস্তারিত তথ্যের জন্য [LICENSE.md](LICENSE.md) দেখুন।
