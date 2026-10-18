@@ -1,0 +1,6 @@
+# Non-book materials / meta
+docs/
+tests/
+.superpowers/
+.DS_Store
+*.tmp
