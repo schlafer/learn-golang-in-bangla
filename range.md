@@ -1,33 +1,49 @@
 # রেঞ্জ
 
-`range` ব্যবহার করে কোনো স্লাইস, ম্যাপ বা চ্যানেল iterate করা যায়। যখন স্লাইস iterate করার জন্য `range` ব্যবহার করা হয় তখন প্রতিটি iterate এর জন্য `range` দুটো ভ্যালু রিটার্ন করে: ইনডেক্স এবং ঐ ইনডেক্সের ভ্যালুর কপি। একটা উদাহরণ দেখা যাক:
+গো-তে স্লাইস, এ্যারে, ম্যাপ, স্ট্রিং কিংবা নির্দিষ্ট সংখ্যার উপর পুনরাবৃত্তি বা লুপ করার জন্য `for ... range` কনস্ট্রাক্ট ব্যবহৃত হয়।
+
+---
+
+## ১. স্লাইস ও এ্যারের উপর রেঞ্জ
+
+স্লাইসের উপর `range` চালালে এটি প্রতিটি উপাদানের জন্য দুটি মান দেয়: ইনডেক্স এবং ওই ইনডেক্সের মান:
 
 ```go
 package main
 
 import "fmt"
 
-var doubles = []int{0, 2, 4, 6, 8, 10}
-
 func main() {
-    for i, v := range doubles {
-        fmt.Println("Double of", i, "is", v)
+    numbers := []int{10, 20, 30}
+
+    // ইনডেক্স ও ভ্যালু উভয়ই ব্যবহার করা
+    for i, v := range numbers {
+        fmt.Println("Index:", i, "Value:", v)
     }
+
+    // ইনডেক্স প্রয়োজন না হলে ব্ল্যাঙ্ক আইডেন্টিফায়ার (_) দিয়ে বাদ দেওয়া যায়
+    sum := 0
+    for _, num := range numbers {
+        sum += num
+    }
+    fmt.Println("যোগফল:", sum)
 }
 ```
 
-এখানে `doubles` অ্যারেটি আইটারেট করার জন্য `range` ব্যবহার করা হয়েছে। প্রতিটি iteration এ `i` আর `v` তে থাকবে যথাক্রমে ইনডেক্স আর ওই ইনডেক্সের ভ্যালুর কপি। প্রোগ্রাম রান করলে এই আউটপুট পাওয়া যাবে:
+আউটপুট:
 
 ```text
-Double of 0 is 0
-Double of 1 is 2
-Double of 2 is 4
-Double of 3 is 6
-Double of 4 is 8
-Double of 5 is 10
+Index: 0 Value: 10
+Index: 1 Value: 20
+Index: 2 Value: 30
+যোগফল: 60
 ```
 
-যদি ইনডেক্স বা ভ্যালুর দরকার না পড়ে তবে সেটা `_` ব্যবহার করে স্কিপ করা যায়। আবার শুধু ইনডেক্স চাইলে দ্বিতীয় ভ্যারিয়েবল লিখার প্রয়োজন পড়ে না। উদাহরণ দেখি:
+---
+
+## ২. ম্যাপের উপর রেঞ্জ
+
+ম্যাপের প্রতিটি উপাদান ভিজিট করার সময় `range` দেয় কি (key) এবং ভ্যালু (value):
 
 ```go
 package main
@@ -35,17 +51,13 @@ package main
 import "fmt"
 
 func main() {
-    // ইন্টিজারের স্লাইস তৈরি করলাম
-    doubles := make([]int, 6)
-
-    // শুধু ইনডেক্স নিয়ে সেগুলোর সাথে দুই গুণ করছি
-    for i := range doubles {
-        doubles[i] = 2 * i
+    capitals := map[string]string{
+        "Bangladesh": "Dhaka",
+        "Japan":      "Tokyo",
     }
 
-    // এবার স্লাইসটির ভ্যালুগুলো দেখাচ্ছি, ইনডেক্স বাদ দেয়ার জন্য `_` ব্যবহার করছি
-    for _, value := range doubles {
-        fmt.Println(value)
+    for country, city := range capitals {
+        fmt.Printf("%s এর রাজধানী %s\n", country, city)
     }
 }
 ```
@@ -53,11 +65,57 @@ func main() {
 আউটপুট:
 
 ```text
-0
-2
-4
-6
-8
-10
+Bangladesh এর রাজধানী Dhaka
+Japan এর রাজধানী Tokyo
 ```
 
+---
+
+## ৩. স্ট্রিং এবং ইউনিকোড (Rune) এর উপর রেঞ্জ
+
+স্ট্রিং-এর উপর `range` চালালে এটি বাইট ইনডেক্স এবং ইউনিকোড ক্যারেক্টার বা `rune` রিটার্ন করে:
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    for i, ch := range "গো" {
+        fmt.Printf("Index %d: %c\n", i, ch)
+    }
+}
+```
+
+আউটপুট:
+
+```text
+Index 0: গ
+Index 3: ো
+```
+
+---
+
+## ৪. আধুনিক ইন্টিজার রেঞ্জ (Go 1.22+)
+
+শুধুমাত্র একটি সংখ্যার উপর রেঞ্জ চালিয়ে ০ থেকে শুরু করে নির্দিষ্ট সংখ্যক বার লুপ ঘোরানো যায়:
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    for i := range 3 {
+        fmt.Println("Round:", i)
+    }
+}
+```
+
+আউটপুট:
+
+```text
+Round: 0
+Round: 1
+Round: 2
+```
