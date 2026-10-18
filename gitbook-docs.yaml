@@ -1,0 +1,11 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Learn Go in Bangla
+  structure:
+    - type: space
+      key: space-learn-golang-in-bangla
+      title: Learn Go in Bangla
+      path: book
+      default: true
+      content:
+        directory: .
