@@ -65,7 +65,7 @@ Go (যা সাধারণত Golang নামে পরিচিত) ২০�
 ## অনলাইনে পড়ুন (GitBook)
 
 বইটি সরাসরি ব্রাউজারে পড়তে GitBook স্পেসে ভিজিট করুন:
-- **[GitBook সংস্করণ](https://schlafer.gitbook.io/learn-golang-in-bangla)** *(অথবা আপনার কাস্টম ডোমেইন)*
+- **[GitBook সংস্করণ](https://schlafer.gitbook.io/learn-golang-in-bangla)**
 
 ---
 
