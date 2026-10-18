@@ -4,7 +4,7 @@ site:
   structure:
     - type: space
       key: space-learn-golang-in-bangla
-      title: Learn Go in Bangla
+      title: বাংলায় গোলাং শিখুন
       path: book
       default: true
       content:
