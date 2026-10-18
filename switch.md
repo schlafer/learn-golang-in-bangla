@@ -1,85 +1,117 @@
-# সুইচ
+# সুইচ (Switch)
 
-সুইচ স্টেটমেন্ট এর ব্যাসিক এক্সাম্পল দেখে নেই:
+গো-তে একাধিক শর্ত সহজে প্রকাশ করতে `switch` স্টেটমেন্ট ব্যবহার করা হয়। অন্যান্য অনেক ভাষার মতো গো-তে প্রতিটি কেইসের শেষে স্বয়ংক্রিয়ভাবে `break` কার্যকর হয়—অর্থাৎ কোনো কেইস মিললে স্বয়ংক্রিয়ভাবে নিচে গড়িয়ে পড়ে না (fallthrough হয় না)।
+
+---
+
+## ১. সাধারণ মানভিত্তিক সুইচ
 
 ```go
+package main
+
+import "fmt"
+
+func main() {
     i := 2
-    fmt.Print("write ", i, " as ")
+    fmt.Print("সংখ্যা ", i, " বাংলায়: ")
+
     switch i {
     case 1:
-        fmt.Println("one")
+        fmt.Println("এক")
     case 2:
-        fmt.Println("two")
+        fmt.Println("দুই")
     case 3:
-        fmt.Println("three")
+        fmt.Println("তিন")
+    default:
+        fmt.Println("অন্য সংখ্যা")
     }
+}
 ```
 
-এখানে আমার সুইচ স্টেটমেন্টকে একটি এক্সপ্রেশন দিয়ে দেই। এরপর সেই এক্সপ্রেশনের ভ্যালুর সাথে আমাদের কেইসগুলো ম্যাচ করিয়ে দেখি যে শর্ত মেলে কিনা। যে সব কেইস ম্যাচ করে সেইসব কেইসের সাথে থাকা কোড ব্লক রান করে। উপরের কোডের আউটপুট হবে:
+আউটপুট:
 
 ```text
-write 2 as two
+সংখ্যা 2 বাংলায়: দুই
 ```
 
-আমরা কেইস স্টেটমেন্ট এ কমা দিয়ে একাধিক কন্ডিশন দিয়ে দিতে পারি, যেমন:
+---
+
+## ২. কমা দিয়ে একাধিক শর্ত এবং শর্তহীন সুইচ
+
+একটি কেইসেই কমা দিয়ে একাধিক মান পরীক্ষা করা যায়। আবার `switch` এর পর কোনো এক্সপ্রেশন না দিলে এটি পরিচ্ছন্ন `if-else` এর মতো কাজ করে:
 
 ```go
 package main
 
-import "fmt"
-import "time"
+import (
+    "fmt"
+    "time"
+)
 
 func main() {
+    // কমা দিয়ে একাধিক শর্ত
     switch time.Now().Weekday() {
     case time.Friday, time.Saturday:
-        fmt.Println("it's the weekend")
+        fmt.Println("আজ ছুটির দিন!")
     default:
-        fmt.Println("it's a weekday")
+        fmt.Println("আজ কর্মদিবস")
+    }
+
+    // শর্তহীন সুইচ (if-else এর পরিচ্ছন্ন রূপ)
+    hour := 14
+    switch {
+    case hour < 12:
+        fmt.Println("শুভ সকাল")
+    case hour < 18:
+        fmt.Println("শুভ অপরাহ্ন")
+    default:
+        fmt.Println("শুভ সন্ধ্যা")
     }
 }
 ```
 
-আমার জন্য আউটপুট আসছে:
+আউটপুট:
 
 ```text
-it's a weekday
+আজ কর্মদিবস
+শুভ অপরাহ্ন
 ```
 
-যেদিন লিখছি সেদিন বৃহস্পতিবার, তাই :\|
+---
 
-তবে সুইচ স্টেটমেন্ট এর পাশাপাশি কেইস স্টেটমেন্ট এও আমরা ডাইনামিক এক্সপ্রেশন ব্যবহার করতে পারি। আমরা চাইলে সুইচ স্টেটমেন্টে কোন এক্সপ্রেশন পাস নাও করতে পারি, সেক্ষেত্রে সুইচ কে ইফ-এলস এর মত করে ব্যবহার করা যায় -
+## ৩. টাইপ সুইচ (Type Switch)
+
+কোনো ইন্টারফেস বা `any` টাইপের ভ্যারিয়েবলের ভেতরের আসল টাইপ পরীক্ষা করতে গো-তে রয়েছে শক্তিশালী টাইপ সুইচ:
 
 ```go
 package main
 
 import "fmt"
-import "time"
 
-func main() {
-    t := time.Now()
-    switch {
-    case t.Hour() < 12:
-        fmt.Println("it's before noon")
+func checkType(i any) {
+    switch v := i.(type) {
+    case bool:
+        fmt.Println("এটি একটি বুলিয়ান:", v)
+    case int:
+        fmt.Println("এটি একটি পূর্ণসংখ্যা:", v*2)
+    case string:
+        fmt.Println("এটি একটি স্ট্রিং:", v)
     default:
-        fmt.Println("it's after noon")
+        fmt.Printf("অজানা টাইপ %T\n", v)
     }
 }
-```
-
-এখানে দেখুন `case t.Hour() < 12` ডাইনামিক এক্সপ্রেশন। এবং আমরা সুইচ স্টেটমেন্টে `t` কে পাস না করে, কেইস স্টেটমেন্টে এসে সরাসরি `t.Hour()` ব্যবহার করেছি। জিনিসটা ইফ-এলস দিয়ে আমরা এভাবে করতে পারতাম:
-
-```go
-package main
-
-import "fmt"
-import "time"
 
 func main() {
-    t := time.Now()
-    if t.Hour() < 12 {
-        fmt.Println("it's before noon")
-    }
-
+    checkType(true)
+    checkType(42)
+    checkType("গো ল্যাঙ্গুয়েজ")
 }
 ```
 
+আউটপুট:
+
+```text
+এটি একটি বুলিয়ান: true
+এটি একটি পূর্ণসংখ্যা: 84
+এটি একটি স্ট্রিং: গো ল্যাঙ্গুয়েজ
+```

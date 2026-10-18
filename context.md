@@ -16,10 +16,12 @@ package main
 import (
     "context"
     "fmt"
+    "sync"
     "time"
 )
 
-func worker(ctx context.Context) {
+func worker(ctx context.Context, wg *sync.WaitGroup) {
+    defer wg.Done()
     for {
         select {
         case <-ctx.Done():
@@ -35,12 +37,14 @@ func worker(ctx context.Context) {
 func main() {
     // ক্যান্সেলেশন কনটেক্সট তৈরি
     ctx, cancel := context.WithCancel(context.Background())
+    var wg sync.WaitGroup
 
-    go worker(ctx)
+    wg.Add(1)
+    go worker(ctx, &wg)
 
     time.Sleep(50 * time.Millisecond)
     cancel() // গোরুটিন বন্ধের নির্দেশ পাঠানো হলো
-    time.Sleep(10 * time.Millisecond)
+    wg.Wait() // গোরুটিনের কাজ সুষ্ঠুভাবে শেষ হওয়া পর্যন্ত অপেক্ষা
 }
 ```
 

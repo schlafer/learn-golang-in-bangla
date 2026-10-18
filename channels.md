@@ -73,7 +73,50 @@ func main() {
 
 ---
 
-## ৩. চ্যানেল ক্লোজ করা এবং রেঞ্জ (Range over Channels)
+## ৩. ডিরেকশনাল চ্যানেল (Channel Directions)
+
+ফাংশনের প্যারামিটারে চ্যানেলের ব্যবহার নির্দিষ্ট করতে ডিরেকশনাল চ্যানেল ব্যবহৃত হয়:
+- `chan<- string`: শুধুমাত্র ডেটা পাঠানোর চ্যানেল (Send-only)
+- `<-chan string`: শুধুমাত্র ডেটা গ্রহণ করার চ্যানেল (Receive-only)
+
+এটি কোডে টাইপ-সেফটি নিশ্চিত করে, যাতে কোনো ফাংশন ভুলবশত চ্যানেলে অনাকাঙ্ক্ষিত অপারেশন না চালায়:
+
+```go
+package main
+
+import "fmt"
+
+// শুধুমাত্র চ্যানেলে ডেটা পাঠাতে পারবে
+func ping(pings chan<- string, msg string) {
+    pings <- msg
+}
+
+// pings থেকে গ্রহণ করে pongs এ পাঠাবে
+func pong(pings <-chan string, pongs chan<- string) {
+    msg := <-pings
+    pongs <- msg
+}
+
+func main() {
+    pings := make(chan string, 1)
+    pongs := make(chan string, 1)
+
+    ping(pings, "পাসড মেসেজ")
+    pong(pings, pongs)
+
+    fmt.Println(<-pongs)
+}
+```
+
+আউটপুট:
+
+```text
+পাসড মেসেজ
+```
+
+---
+
+## ৪. চ্যানেল ক্লোজ করা এবং রেঞ্জ (Range over Channels)
 
 কাজ শেষ হলে সেন্ডার চ্যানেলটি বন্ধ বা `close(ch)` করতে পারে। রিসিভার `for ... range` ব্যবহার করে চ্যানেল খালি ও বন্ধ না হওয়া পর্যন্ত সব ডেটা পড়তে পারে:
 

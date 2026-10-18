@@ -31,7 +31,7 @@ func main() {
     }()
 
     // ২টি মেসেজের জন্য select
-    for i := 0; i < 2; i++ {
+    for range 2 {
         select {
         case msg1 := <-c1:
             fmt.Println("প্রাপ্ত:", msg1)

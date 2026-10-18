@@ -38,7 +38,7 @@ func main() {
     var wg sync.WaitGroup
 
     // ১০০০টি গোরুটিন সমান্তরালভাবে কাউন্টার বাড়াবে
-    for i := 0; i < 1000; i++ {
+    for range 1000 {
         wg.Add(1)
         go func() {
             defer wg.Done()

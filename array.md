@@ -81,8 +81,8 @@ import "fmt"
 
 func main() {
     var twoD [2][3]int
-    for i := 0; i < 2; i++ {
-        for j := 0; j < 3; j++ {
+    for i := range 2 {
+        for j := range 3 {
             twoD[i][j] = i + j
         }
     }
